@@ -7998,5 +7998,13 @@
     "email": "omacalasterrr@gizmodo.com",
     "gender": "Female",
     "job_title": "Software Engineer I"
+  },
+  {
+    "id": 1001,
+    "first_name": "Kunj",
+    "last_name": "Bhatia",
+    "email": "kunjbhatia23@gmail.com",
+    "gender": "Male",
+    "job_title": "Software Dev"
   }
 ]
