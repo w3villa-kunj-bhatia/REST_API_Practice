@@ -39,6 +39,9 @@ app
   .get((req, res) => {
     const id = Number(req.params.id);
     const user = users.find((user) => user.id === id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
     return res.json(user);
   })
   .put((req, res) => {
@@ -53,9 +56,12 @@ app
 app.post("/api/users", (req, res) => {
   //Add new user logic here
   const body = req.body;
+  if (!body.first_name || !body.last_name || !body.email) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
   users.push({ id: users.length + 1, ...body });
   fs.writeFileSync("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-    return res.json({ status: "Success", id: users.length });
+    return res.status(201).json({ status: "Success", id: users.length });
   });
 });
 
