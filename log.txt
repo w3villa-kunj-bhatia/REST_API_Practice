@@ -3,3 +3,17 @@
  1767332984578: ::1 GET: /api/users/ 
  1767333107040: ::1 GET: /api/users/ 
  1767348972998: ::1 GET: /api/users/10000 
+ 1767353175427: ::1 POST: /api/users 
+ 1767353188501: ::1 POST: /api/users 
+ 1767353282816: ::1 POST: /api/users 
+ 1767353480188: ::1 GET: /api/users 
+ 1767353480342: ::1 GET: /favicon.ico 
+ 1767353571160: ::1 GET: /api/users 
+1767353614175 ::1 GET /api/users
+1767353744925 ::1 GET /
+1767353747044 ::1 GET /
+1767353759643 ::1 GET /api/users/
+1767353765359 ::1 GET /
+1767353790468 ::1 GET /users
+1767353792227 ::1 GET /users
+1767353798871 ::1 GET /users
