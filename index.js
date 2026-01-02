@@ -29,6 +29,8 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/api/users", (req, res) => {
+  res.setHeader("X-MyName", "Kunj");
+  // Always add X to custom headers to avoid conflicts with standard headers
   return res.json(users);
 });
 
