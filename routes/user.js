@@ -1,69 +1,27 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
+// Import the functions we just created in the controller
+const {
+  handleGetAllUsers,
+  handleGetAllUsersHTML,
+  handleGetUserById,
+  handleUpdateUserById,
+  handleDeleteUserById,
+  handleCreateNewUser,
+} = require("../controllers/user");
 
-router.get("/", async (req, res) => {
-  const users = await User.find({});
-  const html = `
-    <ul>
-      ${users
-        .map((user) => `<li>${user.firstName} - ${user.email}</li>`)
-        .join("")}
-    </ul>
-  `;
-  res.send(html);
-});
+// Route for /users (HTML view)
+router.get("/html", handleGetAllUsersHTML);
 
-// Get all users (API)
-router.get("/", async (req, res) => {
-  const users = await User.find({});
-  res.setHeader("X-MyName", "Kunj");
-  return res.status(200).json(users);
-});
+// Routes for /users (API view)
+router.route("/").get(handleGetAllUsers).post(handleCreateNewUser);
 
-// Get, Update, Delete user by ID
+// Routes for /users/:id
 router
   .route("/:id")
-  .get(async (req, res) => {
-    const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ message: "User not found" });
-
-    return res.json(user);
-  })
-  .put(async (req, res) => {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-
-    if (!user) return res.status(404).json({ message: "User not found" });
-
-    return res.json(user);
-  })
-  .delete(async (req, res) => {
-    const user = await User.findByIdAndDelete(req.params.id);
-
-    if (!user) return res.status(404).json({ message: "User not found" });
-
-    return res.status(204).send();
-  });
-
-// Create user
-router.post("/", async (req, res) => {
-  const { firstName, lastName, email, jobTitle, gender } = req.body;
-
-  if (!firstName || !email) {
-    return res.status(400).json({ message: "Required fields missing" });
-  }
-
-  const user = await User.create({
-    firstName,
-    lastName,
-    email,
-    jobTitle,
-    gender,
-  });
-
-  return res.status(201).json(user);
-});
+  .get(handleGetUserById)
+  .patch(handleUpdateUserById) // Task asked for PATCH
+  .delete(handleDeleteUserById);
 
 module.exports = router;
