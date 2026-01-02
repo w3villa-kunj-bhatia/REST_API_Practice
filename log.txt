@@ -17,3 +17,7 @@
 1767353790468 ::1 GET /users
 1767353792227 ::1 GET /users
 1767353798871 ::1 GET /users
+1767354066377 ::1 POST /api/users
+1767354116788 ::1 GET /api.users/6957aed22b9ccacbf26c1feb
+1767354124103 ::1 GET /api/users/6957aed22b9ccacbf26c1feb
+1767354170418 ::1 DELETE /api/users/6957aed22b9ccacbf26c1feb
